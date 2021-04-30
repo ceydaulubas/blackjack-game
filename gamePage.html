@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+</head>
+
+<body>
+    <a href="index.html">Go to Main Page</a>
+ 
+    <div id= "dealer">
+        <h2>Dealer
+            <span id="points-of-dealer"></span>
+        </h2>
+        <div id="dealers-hand"></div>
+    </div>
+
+    <div>
+        <button id="hit-btn" onclick="hit()">HIT</button>
+        <button id="stand-btn" onclick="stay()">STAY</button>
+        <p id="show-result"></p>
+    </div>
+
+    <div id= "player">
+        <h2>Player
+            <span id="points-of-player"></span>
+        </h2>
+        <div id="players-hand"></div>
+    </div>
+
+    <div id ="result-situation">
+        <h2 id="result-text"></h2>
+        <!-- <button class="btn sml" onclick="newGame()">Play Again</button> -->
+			<a class="btn sml" href="/scoresPage.html">Score</a>
+
+    </div>
+
+    <script type="text/javascript" src="blackjack.js"></script>
+</body>
+
+
+</html>

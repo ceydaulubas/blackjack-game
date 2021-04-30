@@ -38,7 +38,7 @@ class Deck {
             model.push(this.allCards[randomNum]);
             this.allCards.splice(randomNum, 1);
         }
-        this.allCards = modern;
+        this.allCards = model;
     }
     giveOneCard() {
         return this.allCards.shift();
@@ -98,6 +98,32 @@ let player = new Player();
 let dealer = new Player();
 
 let gameOver = false;
+
+/* DEALER'S RANDOM CARDS */
+const dealersHand = document.getElementById("dealers-hand");
+dealer.addOneCard(cards.giveOneCard());
+dealer.addOneCard(cards.giveOneCard());
+
+dealersHand.innerHTML += `<div>${dealer.cards[0].suit + dealer.cards[0].number}</div>` 
+let html =`<div>${dealer.cards[1].suit + dealer.cards[1].number}</div>` 
+dealersHand.innerHTML += html;
+
+const dealersPoint = document.getElementById("points-of-dealer");
+dealersPoint.innerHTML = `[${dealer.cards[0].value}]`;
+
+/* PLAYER'S RANDOM CARDS */
+const playersHand = document.getElementById("players-hand");
+const playersPoint = document.getElementById("points-of-player");
+player.addOneCard(cards.giveOneCard());
+player.addOneCard(cards.giveOneCard());
+
+playersHand.innerHTML += `<div>${player.cards[0].suit + player.cards[0].number}</div>`;
+playersHand.innerHTML += `<div>${player.cards[1].suit + player.cards[1].number}</div>`;
+playersPoint.innerHTML = `[${player.values}]`;
+
+
+const resultSituation = document.getElementById("result-situation");
+const resultText = document.getElementById("result-text");
 
 
 const playBlackjack = (delay, playerName) => {
