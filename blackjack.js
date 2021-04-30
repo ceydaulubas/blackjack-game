@@ -104,8 +104,8 @@ const dealersHand = document.getElementById("dealers-hand");
 dealer.addOneCard(cards.giveOneCard());
 dealer.addOneCard(cards.giveOneCard());
 
-dealersHand.innerHTML += `<div>${dealer.cards[0].suit + dealer.cards[0].number}</div>` 
-let html =`<div>${dealer.cards[1].suit + dealer.cards[1].number}</div>` 
+dealersHand.innerHTML += `<div>${dealer.cards[0].suit + dealer.cards[0].number}</div>`
+let html = `<div>${dealer.cards[1].suit + dealer.cards[1].number}</div>`
 dealersHand.innerHTML += html;
 
 const dealersPoint = document.getElementById("points-of-dealer");
@@ -124,6 +124,26 @@ playersPoint.innerHTML = `[${player.values}]`;
 
 const resultSituation = document.getElementById("result-situation");
 const resultText = document.getElementById("result-text");
+
+/* HIT 0R STAY */
+
+hit = () => {
+    let newCard = cards.giveOneCard();
+    player.addOneCard(newCard);
+
+    playersHand.innerHTML += `<div>${newCard.suit + newCard.number}</div>`;
+    playersPoint.innerHTML = `[${player.values}]`;
+}
+
+stay =() =>{
+    
+    setTimeout("checkResult()",500);
+}
+
+checkResult =() => {
+    dealersTurn
+}
+
 
 
 const playBlackjack = (delay, playerName) => {

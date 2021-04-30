@@ -1,0 +1,23 @@
+/*Openning Page*/
+
+body{
+    color:#faebd7;
+    background: url('./2434436.jpg')no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'GM Hightop Demoversion', sans-serif;
+}
+
+.main-page{
+    margin-top:20%;
+    margin-left:5%
+}
+
+h1{
+    font-size: 500%
+}
+.btn{
+    color:#faebd7;
+}
