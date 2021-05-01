@@ -144,16 +144,18 @@ hit = () => {
 }
 
 isOver21 = () => {
-    if (player.values > 21) {
-        gameOver = true;
-        showResult("You Lost!")
-    }
 
-    if (player.values > 21 && player.aces !== 0) {
-        player.values -= 10;
-        player.aces -= 1;
-        playersPoint.innerHTML = `[${player.values}]`;
-    }
+    if (player.values > 21) {
+		if (player.aces !== 0) {
+			player.values -= 10;
+			player.aces -= 1;
+			playersPoint.innerHTML = `[${player.values}]`;
+		} else {
+			gameOver = true;
+			showResult("You Lost!")
+		}
+	}
+
 }
 
 stay = () => {
@@ -203,10 +205,10 @@ whoIsWinner =() =>{
 
     let message = "";
 
-    if( (dealer.value < player.values)){
+    if(player.values >dealer.values){
         message ="You Win 🎉!!"
     }
-    else if((dealer.values<=21) && (dealer.values > player.values)  ){
+    else if(dealer.values > player.values){
         message ="You Lose :/"
     }
     else{
@@ -218,9 +220,10 @@ whoIsWinner =() =>{
 showResult = (message) => {
 
     const showMessage = document. getElementById("showMessage");
-    const showMessageClass= document.querySelector('.showmessageclass')
 
     resultMessage.innerHTML =message;
+    resultMessage.style.display = "block"
+ 
 
     document.getElementById("hit-btn").style.display = "none";
 	document.getElementById("stay-btn").style.display = "none";
