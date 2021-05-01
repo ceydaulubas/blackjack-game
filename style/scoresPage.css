@@ -1,0 +1,26 @@
+body {
+  background: url("/images/score-page.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  position: fixed;
+  top: 15%;
+  left: 40%;
+}
+
+div{
+  color: #faebd7;
+}
+
+.btn{
+  position: fixed;
+  top: 80%;
+  left: 43%;
+}
+
+#scores{
+  padding: 5%;
+  margin-top: 50%;
+}

@@ -1,13 +1,12 @@
 /*Openning Page*/
 
 body{
-    color:#faebd7;
-    background: url('./2434436.jpg')no-repeat center center fixed; 
+    background: url('/images/opening-page.jpg')no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    font-family: 'GM Hightop Demoversion', sans-serif;
+    padding: 2%;
 }
 
 .main-page{
@@ -15,8 +14,9 @@ body{
     margin-left:5%
 }
 
-h1{
-    font-size: 500%
+.main-page-head{
+    font-size: 500%;
+    color:#faebd7;
 }
 .btn{
     color:#faebd7;

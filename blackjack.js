@@ -50,18 +50,19 @@ class Player {
         this.cards = [];
         this.values = 0;
         this.aces = 0;
+        this.blackjack = false;
         this.faces = 0;
-        this.wn = false;
         // this.numOfCards=0;
     }
 
     addOneCard(card) {
         this.cards.push(card);
         this.values += this.addPoint(card);
-        // this.numOfCards +=1;
         this.aces += this.haveAce(card.number);
+        this.blackjack = this.isblackjack(); 
+        // this.numOfCards +=1;
         this.faces += this.haveFace(card.value);
-        this.wn = this.isWn();
+       
     }
 
     addPoint(card) {
@@ -86,14 +87,19 @@ class Player {
         return 0;
     }
 
-    isWn() {
+    isblackjack= () => {
         if (this.value === 21) {
-            return this.aces === 1 && this.faces === 1;
+            showResult("blackjackkkkk")
+            return this.aces === 1
+            &&
+             this.faces === 1;
+            
         }
     }
 }
 
 let cards = new Deck();
+
 let player = new Player();
 let dealer = new Player();
 
@@ -120,10 +126,10 @@ player.addOneCard(cards.giveOneCard());
 playersHand.innerHTML += `<div>${player.cards[0].suit + player.cards[0].number}</div>`;
 playersHand.innerHTML += `<div>${player.cards[1].suit + player.cards[1].number}</div>`;
 playersPoint.innerHTML = `[${player.values}]`;
-
+    
 
 const resultSituation = document.getElementById("result-situation");
-const resultText = document.getElementById("result-text");
+const resultMessage = document.getElementById("result-message");
 
 /* HIT 0R STAY */
 
@@ -133,18 +139,97 @@ hit = () => {
 
     playersHand.innerHTML += `<div>${newCard.suit + newCard.number}</div>`;
     playersPoint.innerHTML = `[${player.values}]`;
+
+    isOver21();
 }
 
-stay =() =>{
-    
-    setTimeout("checkResult()",500);
+isOver21 = () => {
+    if (player.values > 21) {
+        gameOver = true;
+        showResult("You Lost!")
+    }
+
+    if (player.values > 21 && player.aces !== 0) {
+        player.values -= 10;
+        player.aces -= 1;
+        playersPoint.innerHTML = `[${player.values}]`;
+    }
 }
 
-checkResult =() => {
-    dealersTurn
+stay = () => {
+    setTimeout("checkResult()", 500);
 }
 
+checkResult = () => {
+    dealersTurn();
 
+    if(!gameOver){
+        whoIsWinner();
+    }
+};
+
+dealersTurn = () => {
+/*
+ 1. dealer can select card until total cards' value smaller than 17. 
+ 2. if dealer's value bigger than 21, game over will be turn true, 
+
+*/
+while (dealer.values<17){
+    let newCard = cards.giveOneCard();
+    dealer.addOneCard(newCard);
+    dealersHand.innerHTML += `[${dealer.values}]`
+}
+dealersPoint.innerHTML = `[${dealer.values}]`;
+
+if (dealer.values > 21) {
+    if (dealer.aces !== 0) {
+        dealer.values -= 10;
+        dealer.aces -= 1;
+        dealersPoint.innerHTML = `[${dealer.values}]`;
+        dealersTurn();
+    } else {
+        gameOver = true;
+        showResult("YOU WIN 🎉🎉!!!");
+    }
+}
+}
+
+whoIsWinner =() =>{
+/*
+ 1. dealer's value< player's value => win
+ 2. dealer's value> player's value => lose
+ 3. dealer's value = player's value => equality
+*/
+
+    let message = "";
+
+    if( (dealer.value < player.values)){
+        message ="You Win 🎉!!"
+    }
+    else if((dealer.values<=21) && (dealer.values > player.values)  ){
+        message ="You Lose :/"
+    }
+    else{
+        message ="There is equility, Let's play again!"
+    }
+    showResult(message);
+}
+
+showResult = (message) => {
+
+    const showMessage = document. getElementById("showMessage");
+    const showMessageClass= document.querySelector('.showmessageclass')
+
+    resultMessage.innerHTML =message;
+
+    document.getElementById("hit-btn").style.display = "none";
+	document.getElementById("stay-btn").style.display = "none";
+}
+
+/* reload page */
+newGame = () => {
+	setTimeout("location.reload()", 500);
+};
 
 const playBlackjack = (delay, playerName) => {
 
