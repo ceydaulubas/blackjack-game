@@ -1,8 +1,9 @@
-const playBlackjack = (delay,) => {
+const playBlackjack = (delay, playerName) => {
 
 
 var suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
 var numbers = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
+playerName;
 
 class Card {
     constructor(suit, number) {
@@ -106,19 +107,6 @@ let dealer = new Player();
 
 let gameOver = false;
 
-/* DEALER'S RANDOM CARDS && POINT */
-const dealersHand = document.getElementById("dealers-hand");
-dealer.addOneCard(cards.giveOneCard());
-dealer.addOneCard(cards.giveOneCard());
-
-dealersHand.innerHTML += `<div>${dealer.cards[0].suit + dealer.cards[0].number}</div>`
-let html = `<div>${dealer.cards[1].suit + dealer.cards[1].number}</div>`
-dealersHand.innerHTML += html;
-console.log(html)
-
-const dealersPoint = document.getElementById("points-of-dealer");
-dealersPoint.innerHTML = `[${dealer.cards[0].value}]`;
-
 /* PLAYER'S RANDOM CARDS && POINT */
 const playersHand = document.getElementById("players-hand");
 const playersPoint = document.getElementById("points-of-player");
@@ -132,6 +120,22 @@ playersPoint.innerHTML = `[${player.values}]`;
 
 const resultSituation = document.getElementById("result-situation");
 const resultMessage = document.getElementById("result-message");
+
+
+/* DEALER'S RANDOM CARDS && POINT */
+const dealersHand = document.getElementById("dealers-hand");
+dealer.addOneCard(cards.giveOneCard());
+dealer.addOneCard(cards.giveOneCard());
+
+dealersHand.innerHTML += `<div>${dealer.cards[0].suit + dealer.cards[0].number}</div>`
+let dealerSecondCard = `<div>${dealer.cards[1].suit + dealer.cards[1].number}</div>`
+// dealerSecondCard.style.style.display = "none";
+dealersHand.innerHTML += dealerSecondCard;
+
+const dealersPoint = document.getElementById("points-of-dealer");
+dealersPoint.innerHTML = `[${dealer.cards[0].value}]`;
+
+
 
 /* HIT 0R STAY */
 
@@ -248,4 +252,4 @@ newGame = () => {
 
 }
 
-playBlackjack(500);
+playBlackjack(500,player);

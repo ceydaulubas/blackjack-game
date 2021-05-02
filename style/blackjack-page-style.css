@@ -1,10 +1,9 @@
 body{ 
-    background: url('/images/game-page.jpg')no-repeat center center fixed; 
+    background: url('/images/game-page.jpg')no-repeat fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
- 
 }
 
 .btn{
@@ -13,6 +12,21 @@ body{
 
 .game-area{
     text-align: center;
-    margin-top: 2%;
+    margin-top: 5%;
 }
 
+
+@media screen and (max-width: 1200px) {
+    body{
+        background: url('/images/game-page.jpg')no-repeat fixed; 
+        
+    }
+    .game-area{
+        text-align: center;
+        margin-top: 5%;
+        color: rgb(156, 184, 156);
+    }
+    .btn{
+        margin: 5%;
+    }
+  }
