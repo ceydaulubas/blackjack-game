@@ -1,3 +1,6 @@
+const playBlackjack = (delay,) => {
+
+
 var suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
 var numbers = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
 
@@ -52,7 +55,6 @@ class Player {
         this.aces = 0;
         this.blackjack = false;
         this.faces = 0;
-        // this.numOfCards=0;
     }
 
     addOneCard(card) {
@@ -60,7 +62,6 @@ class Player {
         this.values += this.addPoint(card);
         this.aces += this.haveAce(card.number);
         this.blackjack = this.isblackjack(); 
-        // this.numOfCards +=1;
         this.faces += this.haveFace(card.value);
        
     }
@@ -105,7 +106,7 @@ let dealer = new Player();
 
 let gameOver = false;
 
-/* DEALER'S RANDOM CARDS */
+/* DEALER'S RANDOM CARDS && POINT */
 const dealersHand = document.getElementById("dealers-hand");
 dealer.addOneCard(cards.giveOneCard());
 dealer.addOneCard(cards.giveOneCard());
@@ -113,11 +114,12 @@ dealer.addOneCard(cards.giveOneCard());
 dealersHand.innerHTML += `<div>${dealer.cards[0].suit + dealer.cards[0].number}</div>`
 let html = `<div>${dealer.cards[1].suit + dealer.cards[1].number}</div>`
 dealersHand.innerHTML += html;
+console.log(html)
 
 const dealersPoint = document.getElementById("points-of-dealer");
 dealersPoint.innerHTML = `[${dealer.cards[0].value}]`;
 
-/* PLAYER'S RANDOM CARDS */
+/* PLAYER'S RANDOM CARDS && POINT */
 const playersHand = document.getElementById("players-hand");
 const playersPoint = document.getElementById("points-of-player");
 player.addOneCard(cards.giveOneCard());
@@ -152,7 +154,7 @@ isOver21 = () => {
 			playersPoint.innerHTML = `[${player.values}]`;
 		} else {
 			gameOver = true;
-			showResult("You Lost!")
+			showResult("YOU LOSE 😱😱")
 		}
 	}
 
@@ -191,7 +193,7 @@ if (dealer.values > 21) {
         dealersTurn();
     } else {
         gameOver = true;
-        showResult("YOU WIN 🎉🎉!!!");
+        showResult("YOU WIN 🏆✨");
     }
 }
 }
@@ -206,10 +208,10 @@ whoIsWinner =() =>{
     let message = "";
 
     if(player.values >dealer.values){
-        message ="You Win 🎉!!"
+        message ="YOU WIN 🏆🎉"
     }
     else if(dealer.values > player.values){
-        message ="You Lose :/"
+        message ="YOU LOSE 😱"
     }
     else{
         message ="There is equility, Let's play again!"
@@ -222,7 +224,17 @@ showResult = (message) => {
     const showMessage = document. getElementById("showMessage");
 
     resultMessage.innerHTML =message;
-    resultMessage.style.display = "block"
+    resultMessage.style.cssText = `
+                                width:45%;
+                                height:45%;
+                                margin: 2vh auto;
+                                background-color: rgb(250, 235, 215);
+                                font-size: 2vw; 
+                                text-align:center;
+                                margin-top:5%;
+                                border: 2px solid black;
+                                border-radius: 25px;
+                                `;
  
 
     document.getElementById("hit-btn").style.display = "none";
@@ -231,9 +243,9 @@ showResult = (message) => {
 
 /* reload page */
 newGame = () => {
-	setTimeout("location.reload()", 500);
+	setTimeout("location.reload()", delay);
 };
 
-const playBlackjack = (delay, playerName) => {
-
 }
+
+playBlackjack(500);
