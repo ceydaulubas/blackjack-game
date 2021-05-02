@@ -55,8 +55,6 @@
                 - The dealer automatically wins
 
 
-
-
 ## Tools
 
-This project was created with JS, HTML and CSS
+This project was created with HTML, CSS and JavaScript
