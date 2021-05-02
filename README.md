@@ -58,3 +58,7 @@
 ## Tools
 
 This project was created with HTML, CSS and JavaScript
+
+## Link
+
+You can access deployed link:  https://blackjack-purejs.netlify.app/
